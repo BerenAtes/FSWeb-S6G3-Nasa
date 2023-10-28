@@ -48,6 +48,7 @@ function App() {
                 />{" "}
               </div>
 
+<<<<<<< HEAD
               <div>
                 {" "}
                 {data ? <img src={data.url} alt={data.title} /> : null}
@@ -72,3 +73,16 @@ function App() {
 }
 
 export default App;
+=======
+      {data ? (
+        <>
+          {data.media_type === "video" ? (
+            <VideoViewer data={data} />
+          ) : (
+            <ImageViewer data={data} />
+          )}
+        </>
+      ) : (
+        "Loading..."
+      )}
+>>>>>>> 6747a5bbdab719e78de5c8e2386b12282df4a1ed
