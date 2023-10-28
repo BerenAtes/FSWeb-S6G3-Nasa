@@ -6,10 +6,10 @@ import VideoViewer from "./components/videoViewer";
 
 function App() {
   const [data, setData] = useState(null);
-  const myAPIKey = "gncikmQ4I59JnJdONN4osKC2rzK9zVJFghn8RAh3";
+  const myAPIKey = "U8GDchKTIuhX6tBZInjga1HZUqMze4w6WotYI6sc";
   // Make a request for a user with a given ID
 
-  const [date, setDate] = useState("2012-10-02");
+  const [date, setDate] = useState("1999-01-01");
 
   useEffect(() => {
     axios
@@ -32,23 +32,41 @@ function App() {
 
   return (
     <div className="App">
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
+      <div className="container">
+        {data ? (
+          <>
+            <div className="column">
+              <div className="nasa">
+                <h1> Astronomy Picture of the Day - NASA </h1>
+              </div>
+              <div className="input">
+                {" "}
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />{" "}
+              </div>
 
-      {data ? (
-        <>
-          {data.media_type === "video" ? (
-            <VideoViewer data={data} />
-          ) : (
-            <ImageViewer data={data} />
-          )}
-        </>
-      ) : (
-        "Loading..."
-      )}
+              <div>
+                {" "}
+                {data ? <img src={data.url} alt={data.title} /> : null}
+              </div>
+            </div>
+            <div className="column space-between">
+              <div className="detail">
+                <div className="title">
+                  <h1>{data.title}</h1>
+                </div>
+                <p>{data.explanation}</p>
+                <p>{data.copyright}</p>
+              </div>
+            </div>
+          </>
+        ) : (
+          "Loading..."
+        )}
+      </div>
     </div>
   );
 }
